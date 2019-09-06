@@ -1,0 +1,40 @@
+/*
+Icons from svgrepo.com/vectors used under the Creative Commons BY 4.0 liscence (https://www.svgrepo.com/info/licensing)
+*/
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../webfonts/icomoon.eot?fmm0e0');
+  src:  url('../webfonts/icomoon.eot?fmm0e0#iefix') format('embedded-opentype'),
+    url('../webfonts/icomoon.ttf?fmm0e0') format('truetype'),
+    url('../webfonts/icomoon.woff?fmm0e0') format('woff'),
+    url('../webfonts/icomoon.svg?fmm0e0#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ribbon:before {
+  content: "\e900";
+}
+.icon-brain:before {
+  content: "\e901";
+}
+.icon-lungs:before {
+  content: "\e902";
+}
