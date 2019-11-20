@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Jenna Schabdach - 2019-11-20 rsync vs. scp</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="index.html" class="logo">Writing > 2019-11-20 rsync vs. scp </a>
+                        <ul class="icons">
+                            <li><a href="https://github.com/jmschabdach" class="icon brands fa-github"><span class="label">Github</span></a></li>
+                            <li><a href="https://www.linkedin.com/in/jmschabdach/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                            <li><a href="https://twitter.com/jmschabdach" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://twitter.com/schabbygames" class="icon solid fa-heart"><span class="label">Extra Life Twitter</span></a></li>
+                            <!-- Add Extra Life -->
+                        </ul>
+                    </header>
+
+                    <!-- Banner -->
+                    <section id="banner">
+                        <div class="content">
+                            <header>
+                                <h2>2019-11-20: rsync vs. scp</h2>
+                            </header>
+                            <p><b>Problem</b>: I need to copy some specific files from the computer I use to process my data to the computer I'm going to use to run machine learning experiments and generate figures.</p>
+
+                            <p>Over the last few years, I've become a fan of the <code>scp</code> command line utility. It's fantastic for moving large directories using simple commands. But it's not ideal for my problem. I need to grab files from three directories down. There are multiple directories in each level between the starting directory and the files I need. </p>
+
+                            <p><b>Potential solution 1</b>: Use <code>scp</code> to recursively grab all of the data in the main directory and remove the files I don't need afterward. </p> 
+
+                            <p>This is the solution I've been using for exchanging data between computers until this point. It feels like I'm wasting a lot of time by copying all the data but only keeping a fraction of the files. In other words, "Holy overhead, Batman!"</p>
+
+                            <p><b>Potential solution 2</b>: Use <code>rsync</code> instead of <code>scp</code> to grab only the files I need. </p>
+
+                            <p><code>rsync</code> is a new command for me. One of my lab members told me about it a few weeks ago, and I've been looking at it since to learn how it works. It has quite a few options, and I went through a few iterations using <code>--include</code> and <code>--exclude</code> with the <code>-n</code> flag to see how including or excluding specific files would impact the data I copied from one computer to the other without actually copying the data. The <code>-n</code> flag kept my overhead low and allowed me to quickly test different combinations of arguments. </p>
+
+                            <p>The more time I spent playing with <code>rsync</code>, the more I realized it was both the best solution for my current problem and a tool I would use again in the future.</p>
+
+                            <p><b>Final solution</b>: use the command
+
+                            <code>rsync --include '*.csv' --exclude-from='metrics_copying-exclude.txt' -zarvh me@my.ip.add.ress:/path/to/data/* .</code>
+
+                            to recursively copy all CSV files and the directory structure from the remote /path/to/data/ directory to the current directory on the local computer. I put together the <code>metrics_copying-exclude.txt</code> to specify the files and file types I didn't want to copy over without needing to type out an even longer command.</p>
+
+                            <p>Unfortunately, the script I ran to generate the .csv files I was using created an empty directory for each image, meaning that I copied over a bunch of empty directories. I used the suggestion <a href="https://unix.stackexchange.com/a/46326">here</a> to remove the empty directories and kept only the ones with .csv files in them. To quickly summarize,I used the <code>find</code> tool to print out a list of empty subdirectories in my copied data and then delete them after confirming they should indeed be empty.
+
+                            Next steps: perform traditional volume registration on my images from a multicenter study.
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+                <div id="sidebar">
+                    <div class="inner">
+                        
+                        <!-- Search -->
+                        <!--
+                            <section id="search" class="alt">
+                                <form method="post" action="#">
+                                    <input type="text" name="query" id="query" placeholder="Search" />
+                                </form>
+                            </section>
+--> 
+
+                        <!-- Menu -->
+                        <nav id="menu">
+                            <header class="major">
+                                <h2>Menu</h2>
+                            </header>
+                            <ul>
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../projects/index.html">Projects</a></li>
+                                <li><span class="opener">Dissertation Diaries</span>
+                                <ul>
+                                    <li><a href="2019-11-20_disdiary.html">2019-11-20: rsync vs. scp</a></li>
+                                <!--<li><a href="#">Ipsum Adipiscing</a></li>
+                                <li><a href="#">Tempus Magna</a></li>
+                                <li><a href="#">Feugiat Veroeros</a></li>-->
+                                </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- Section -->
+                        <section>
+                            <header class="major">
+                                <h2>Summary</h2>
+                            </header>
+                            <p>PhD candidate in Biomedical Informatics at the University of Pittsburgh working on removing motion from medical images. Interested in computer vision, machine learning, and IoT. Actively seeking an exciting, engaging position at tech companies in Pittsburgh, PA.</p>
+                            <ul class="contact">
+                                <li class="icon solid fa-envelope"><a href="mailto:j.m.schabdach+website@gmail.com">Send me an email</a></li>
+                                <!--<li class="icon solid fa-phone">(000) 000-0000</li>-->
+                                <!--<li class="icon solid fa-home">Pittsburgh, PA</li>-->
+                            </ul>
+                        </section>
+
+                        <!-- Footer -->
+                        <footer id="footer">
+                            <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                        </footer>
+
+                    </div>
+                </div>
+        </div>
+
+    <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+    </body>
+</html>
