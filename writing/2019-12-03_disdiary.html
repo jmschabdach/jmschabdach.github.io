@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<!--
+    Editorial by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Jenna Schabdach - 2019-12-03 Backing Up Data Using FTP and Box</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="index.html" class="logo">Writing</a>
+                        <script src="../header.js"></script>
+                    </header>
+
+                    <!-- Banner -->
+                    <section id="banner">
+                        <div class="content">
+                            <header>
+                                <h2>2019-12-03: Backing Up Data Using FTP and Box</h2>
+                            </header>
+
+                            <p>Have you heard of the 3-2-1 rule of thumb for backing up your data? You want to keep at least 3 copies of your data where 2 copies are backups on different storage media and 1 of the backups is located offsite.</p>
+
+                            <p>Why is the 3-2-1 rule important, you ask? Losing months of work on a project is devastating. About 3 months before I defended my master's thesis, my laptop's graphics card died. The only way I could access my files was by booting my laptop in recovery mode. I only got some of them off and lost nearly every homework assignment, paper, and piece of code from my previous 5 years of classes. I even ended up losing over a decade's worth of photos. (Ironically, my phone also quit on me around the same time.) I was able to use backups of the documents and code I had on GitLab to finish my thesis, but I lost so many valuable resources in that crash. </p>
+
+                            <p>Fast forward to right now, when I'm about 4 months away from defending my dissertation. I back my code and dissertation document up to Github and do most of my other work in Google Drive, but I am still worried about losing my data. It took months to get it all, and I am still running experiments using it. (Also, my phone is starting to show signs that its time is up.) While taking a quick break in my writing, I'm focusing on backing up my data. I'm in the process of getting an external hard drive with enough capacity to hold all of the data and results for my dissertation project, so I started with the offsite.  </p>
+
+                            <p>Through my grad program, I have unlimited data storage with Box. The biggest difficulty I've had so far with Box is that the drag-and-drop webpage interface is inefficient when uploading large amounts of data or a directory with multiple subdirectory levels. It seems like the GUI can't handle anything too complex. After doing a little digging, though, I learned that data could be transferred to and from Box using FTP. </p>
+
+                            <p>Great! There are a number of file managers capable of FTP. I installed my choice, Filezilla, from Ubuntu Software, used the config parameters found <a href="https://community.box.com/t5/Upload-and-Download-Files-and/Using-Box-with-FTP-or-FTPS/ta-p/26050">here</a> to set up my connection to Box (port 990, not 21), and clicked the "Quickconnect" button in Filezilla to start my connection. I was greeted with a 530 error - Invalid username or password. I retyped my password to be safe and tried again. No dice.  </p>
+
+                            <p>I started a chat with Tech Support at my school. We determined that my account had admin permission to use FTP on Box, that I was using the correct username/email address, and that my connection settings were correct. To be safe, I uninstalled Filezilla a la Ubuntu Software and installed it (and several dependencies) from the source code. This process was a little lengthy. I started up the newly installed Filezilla, retyped my settings, and tried to connect. Still no luck. </p>
+
+                            <p>The Tech Support representative who had been helping me submitted an official ticket for me while I continued to look for a solution. Searching for the error code I had been receiving in Box's support community threads revealed the answer: FTP does not support single sign-on.  </p>
+
+                            <p>I had always accessed Box using my single sign-on username/password for school, but I had never set up an external password for Box. A quick trip to my Account Settings and one external password later, I am now able to connect to Box via FTP through Filezilla. Once my data finishes uploading, I will have my first complete backup. </p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <script src="sidebar.js"></script>
+        </div>
+
+    <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+    </body>
+</html>

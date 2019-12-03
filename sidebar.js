@@ -22,6 +22,7 @@ document.write('\
                 <li><a href="projects/index.html">Projects</a></li>\
                 <li><span class="opener">Dissertation Diaries</span>\
                 <ul>\
+                    <li><a href="writing/2019-12-03_disdiary.html">2019-12-03: Backing Up Data Using FTP and Box</a></li>\
                     <li><a href="writing/2019-11-21_disdiary.html">2019-11-21: AMIA Annual Symposium Reflection</a></li>\
                     <li><a href="writing/2019-11-20_disdiary.html">2019-11-20: rsync vs. scp</a></li>\
                 <!--<li><a href="#">Ipsum Adipiscing</a></li>\
